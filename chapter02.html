@@ -1,18 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chapter 02: Arrays</title>
+  <title>Chapter 02: Sorting and Searching</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <nav>
     <a href="index.html">Home</a>
-    <span class="nav-current">Chapter 02</span>
+    <span class="nav-current">Chapter 02: Sorting and Searching</span>
   </nav>
-  <h1>Chapter 02: Arrays and Prefix Sums</h1>
-  <p>Prefix sums allow fast range queries.</p>
-  <img src="prefix_sum_example.png" alt="Prefix Sum Example" style="max-width:100%;border:1px solid #ccc;">
+
+  <h1>Chapter 02: Sorting and Searching</h1>
+
+  <h2>Overview</h2>
+  <p>This chapter covers basic sorting algorithms and binary search techniques.</p>
+
+  <h2>Core Techniques</h2>
+  <ul>
+    <li><strong>Sorting</strong>: Bubble, Selection, Insertion, Built-ins</li>
+<li><strong>Binary Search</strong>: lower_bound, upper_bound, bisect</li>
+  </ul>
+
+  <h2>Sample Problem</h2>
+  <p>Given a list of numbers, output them in ascending order.</p>
+
+  <p><strong>Python</strong></p>
+  <pre><code class="language-python">nums = list(map(int, input().split()))
+nums.sort()
+print(*nums)</code></pre>
+
+  <p><strong>C++</strong></p>
+  <pre><code class="language-cpp">#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main() {
+    int n; cin >> n;
+    vector<int> a(n);
+    for (int &x : a) cin >> x;
+    sort(a.begin(), a.end());
+    for (int x : a) cout << x << ' ';
+}</code></pre>
+
+  <h2>Common Mistakes</h2>
+  <p>Forgetting to call sort before accessing elements in sorted order.</p>
+
+  <h2>Summary</h2>
+  <ul>
+    <li>Know when to use built-in sorts</li>
+<li>Binary search requires sorted array</li>
+  </ul>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
 </body>
 </html>

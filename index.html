@@ -1,28 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AlgoResearch</title>
+  <title>AlgoResearch Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script>
-    function goToChapter(select) {
-      const link = select.value;
-      if (link) window.location.href = link;
-    }
-  </script>
 </head>
 <body>
   <nav>
-    <a href="index.html">Home</a>
-    <select onchange="goToChapter(this)">
-      <option value="">Select Chapter</option>
-      <option value="chapter01.html">Chapter 01: Input and Simulation</option>
-    </select>
-    <a href="about.html">About</a>
+    <span>AlgoResearch</span>
   </nav>
 
-  <h1>AlgoResearch</h1>
-  <p>Welcome to the AlgoResearch project. Learn algorithms step-by-step with common mistakes and code samples.</p>
+  <h1>Welcome to AlgoResearch</h1>
+  <label for="chapter-select">Choose a chapter:</label>
+  <select id="chapter-select" onchange="location = this.value;">
+    <option value="">--Select Chapter--</option>
+    <option value='chapter01.html'>Chapter 01: Input and Simulation</option>
+    <option value='chapter02.html'>Chapter 02: Sorting and Searching</option>
+    <option value='chapter03.html'>Chapter 03: Prefix Sums and Difference Arrays</option>
+  </select>
 </body>
 </html>

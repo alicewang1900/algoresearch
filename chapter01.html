@@ -28,12 +28,30 @@
 
   <h2>Sample Problem 1: Count Vowels</h2>
   <p>Given a string, count how many vowels it contains.</p>
+  <p><strong>Python</strong></p>
   <pre><code class="language-python">def count_vowels(s):
     return sum(1 for c in s.lower() if c in "aeiou")
 print(count_vowels(input()))</code></pre>
+  <p><strong>C++</strong></p>
+  <pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    string s;
+    getline(cin, s);
+    int count = 0;
+    for (char c : s) {
+        c = tolower(c);
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') count++;
+    }
+    cout << count << endl;
+    return 0;
+}</code></pre>
 
   <h2>Sample Problem 2: Simulate Robot Movement</h2>
   <p>Given L/R/U/D command string, calculate final coordinates.</p>
+  <p><strong>Python</strong></p>
   <pre><code class="language-python">x = y = 0
 for c in input():
     if c == 'L': x -= 1
@@ -41,34 +59,54 @@ for c in input():
     elif c == 'U': y += 1
     elif c == 'D': y -= 1
 print(x, y)</code></pre>
+  <p><strong>C++</strong></p>
+  <pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    int x = 0, y = 0;
+    for (char c : s) {
+        if (c == 'L') x--;
+        else if (c == 'R') x++;
+        else if (c == 'U') y++;
+        else if (c == 'D') y--;
+    }
+    cout << x << " " << y << endl;
+    return 0;
+}</code></pre>
 
   <h2>🔍 Common Mistakes & Examples</h2>
 
   <h3>❌ Mistake 1: Uninitialized Variables</h3>
-  <pre><code class="language-python"># Wrong
-if x > 0:
+  <p><strong>Python (Wrong)</strong></p>
+  <pre><code class="language-python">if x > 0:
     print(x)</code></pre>
-  <p><strong>Fix:</strong> Always initialize variables before use.</p>
-  <pre><code class="language-python"># Correct
-x = 0
+  <p><strong>Python (Correct)</strong></p>
+  <pre><code class="language-python">x = 0
 if x > 0:
     print(x)</code></pre>
 
-  <h3>❌ Mistake 2: Wrong use of input + split()</h3>
-  <pre><code class="language-python"># Wrong
-nums = int(input().split())</code></pre>
-  <p><strong>Fix:</strong> input().split() returns a list of strings.</p>
-  <pre><code class="language-python"># Correct
-nums = list(map(int, input().split()))</code></pre>
+  <h3>❌ Mistake 2: Misuse of input + split()</h3>
+  <p><strong>Python (Wrong)</strong></p>
+  <pre><code class="language-python">nums = int(input().split())</code></pre>
+  <p><strong>Python (Correct)</strong></p>
+  <pre><code class="language-python">nums = list(map(int, input().split()))</code></pre>
 
   <h3>❌ Mistake 3: Infinite Loop in Simulation</h3>
-  <pre><code class="language-python"># Wrong
-while True:
+  <p><strong>Python (Wrong)</strong></p>
+  <pre><code class="language-python">while True:
     n = int(input())
     if n == 0:
         continue
     print(n)</code></pre>
-  <p><strong>Fix:</strong> Ensure valid termination condition with <code>break</code>.</p>
+  <p><strong>Python (Correct)</strong></p>
+  <pre><code class="language-python">while True:
+    n = int(input())
+    if n == 0:
+        break
+    print(n)</code></pre>
 
   <h2>Summary</h2>
   <ul>
@@ -79,5 +117,6 @@ while True:
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
 </body>
 </html>

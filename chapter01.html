@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chapter 01</title>
+  <title>Chapter 01: Input and Simulation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
@@ -12,21 +12,31 @@
     <a href="index.html">Home</a>
     <span class="nav-current">Chapter 01</span>
   </nav>
+
   <h1>Chapter 01: Input and Simulation</h1>
-  <p>Learn basic I/O and simulation techniques through examples.</p>
+
+  <h2>Overview</h2>
+  <p>This chapter introduces basic input/output methods and simulation techniques used to model problems in programming contests. These techniques are often the first step toward solving computational problems that do not require deep algorithms but depend on careful implementation and attention to detail.</p>
+
+  <h2>Core Techniques</h2>
+  <ul>
+    <li><strong>Basic I/O</strong>: Using <code>cin</code>/<code>cout</code> in C++ or <code>input()</code>/<code>print()</code> in Python</li>
+    <li><strong>String Parsing</strong>: Using <code>.split()</code>, string indexing, and conversions like <code>int()</code> or <code>str()</code></li>
+    <li><strong>Array Manipulation</strong>: Initialization, iteration, and element modification</li>
+    <li><strong>Simulation</strong>: Implementing step-by-step processes based on problem descriptions</li>
+  </ul>
 
   <h2>Sample Problem 1: Count Vowels</h2>
   <p>Given a string, count how many vowels it contains.</p>
-  
-    <h3>Count Vowels (Python)</h3>
-    <pre><code class="language-python">def count_vowels(s):
+  <h3>Python</h3>
+  <pre><code class="language-python">def count_vowels(s):
     return sum(1 for c in s.lower() if c in "aeiou")
 
-print(count_vowels(input()))
-</code></pre>
-    <h3>Count Vowels (C++)</h3>
-    <pre><code class="language-cpp">#include <iostream>
-#include <string>
+print(count_vowels(input()))</code></pre>
+
+  <h3>C++</h3>
+  <pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
 using namespace std;
 
 int main() {
@@ -39,24 +49,21 @@ int main() {
     }
     cout << count << endl;
     return 0;
-}
-</code></pre>
-    
+}</code></pre>
 
-  <h2>Sample Problem 2: Simulate Robot</h2>
-  <p>Move a robot on a grid based on L/R/U/D commands.</p>
-  
-    <h3>Robot Movement (Python)</h3>
-    <pre><code class="language-python">x = y = 0
+  <h2>Sample Problem 2: Simulate a Robot on Grid</h2>
+  <p>Given a string of commands (L, R, U, D), compute the final coordinates of a robot starting from (0, 0).</p>
+  <h3>Python</h3>
+  <pre><code class="language-python">x = y = 0
 for c in input():
     if c == 'L': x -= 1
     elif c == 'R': x += 1
     elif c == 'U': y += 1
     elif c == 'D': y -= 1
-print(x, y)
-</code></pre>
-    <h3>Robot Movement (C++)</h3>
-    <pre><code class="language-cpp">#include <iostream>
+print(x, y)</code></pre>
+
+  <h3>C++</h3>
+  <pre><code class="language-cpp">#include &lt;iostream&gt;
 using namespace std;
 
 int main() {
@@ -71,9 +78,17 @@ int main() {
     }
     cout << x << " " << y << endl;
     return 0;
-}
-</code></pre>
-    
+}</code></pre>
+
+  <h2>Sample Problem 3: Simulate Traffic Light Timer</h2>
+  <p>Given red, green, and yellow light durations and a list of light states, simulate when a car can safely pass. (Code TBD)</p>
+
+  <h2>Summary</h2>
+  <ul>
+    <li>Input/output is the foundation of all competitive programming problems.</li>
+    <li>Many implementation-heavy problems require accurate simulation.</li>
+    <li>Focus on edge cases, input size, and clean, logical process handling.</li>
+  </ul>
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>

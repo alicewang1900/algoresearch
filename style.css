@@ -5,42 +5,26 @@ body {
   padding: 1rem;
   color: #333;
 }
-
 nav {
   background-color: #007acc;
   padding: 1rem;
   margin-bottom: 1rem;
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap;
 }
-
-nav a, nav select {
+nav a, .nav-current {
   color: white;
-  background-color: #007acc;
-  border: none;
+  text-decoration: none;
   font-weight: bold;
-  font-size: 1rem;
 }
-
-h1 {
-  color: #003366;
-  font-size: 2rem;
+pre {
+  background: #eee;
+  padding: 0.8rem;
+  overflow-x: auto;
+  border-radius: 4px;
 }
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 1.6rem;
-  }
-  nav {
-    flex-direction: column;
-  }
-}
-
 .nav-current {
-  color: white;
-  font-weight: bold;
   background-color: #005fa3;
-  padding: 0.3rem 0.6rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 4px;
 }

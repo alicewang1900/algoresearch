@@ -1,36 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>AlgoResearch</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AlgoResearch - Home</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    function goToChapter(select) {
+      const link = select.value;
+      if (link) window.location.href = link;
+    }
+  </script>
 </head>
 <body>
   <nav>
     <a href="index.html">Home</a>
-    <a href="chapter01.html">Chapter 01</a>
-    <a href="chapter02.html">Chapter 02</a>
+    <select onchange="goToChapter(this)">
+      <option value="">Select Chapter</option>
+      <option value="chapter01.html">Chapter 01: Input and Simulation</option>
+      <option value="chapter02.html">Chapter 02: Arrays and Prefix Sums</option>
+    </select>
     <a href="about.html">About</a>
   </nav>
+
   <h1>AlgoResearch</h1>
-  <input type="text" id="searchBox" placeholder="Search chapters..." onkeyup="searchChapters()">
-  <ul id="chapterList">
-    <li><a href="chapter01.html">Chapter 01: Input and Simulation</a></li>
-    <li><a href="chapter02.html">Chapter 02: Arrays and Prefix Sums</a></li>
-  </ul>
-  <script>
-    function searchChapters() {
-      let input = document.getElementById('searchBox').value.toLowerCase();
-      let chapters = document.querySelectorAll("#chapterList li");
-      chapters.forEach(ch => {
-        let text = ch.textContent.toLowerCase();
-        ch.style.display = text.includes(input) ? "" : "none";
-      });
-    }
-  </script>
+  <p>Welcome to the AlgoResearch project. This site explores competitive programming through structured chapters and examples.</p>
 </body>
 </html>

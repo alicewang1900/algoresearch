@@ -1,61 +1,143 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Chapter 02: Sorting and Searching</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.css" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Chapter 02: Sorting and Searching</title>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #eef6ff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 960px;
+            margin: auto;
+        }
+        h1, h2, h3 {
+            color: #003366;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 1em;
+            border-left: 4px solid #003366;
+            overflow-x: auto;
+        }
+        .note {
+            background: #dbeaff;
+            padding: 1em;
+            border-left: 4px solid #003366;
+            margin-bottom: 20px;
+        }
+        .nav {
+            margin-bottom: 30px;
+        }
+        .nav a {
+            color: #003366;
+            font-weight: bold;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <span class="nav-current">Chapter 02: Sorting and Searching</span>
-  </nav>
 
-  <h1>Chapter 02: Sorting and Searching</h1>
+<div class="nav">
+    <a href="index.html">🏠 Home</a> <span>| Chapter 02: Sorting and Searching</span>
+</div>
 
-  <h2>Overview</h2>
-  <p>This chapter covers basic sorting algorithms and binary search techniques.</p>
+<h1>Chapter 02: Sorting and Searching</h1>
 
-  <h2>Core Techniques</h2>
-  <ul>
-    <li><strong>Sorting</strong>: Bubble, Selection, Insertion, Built-ins</li>
-<li><strong>Binary Search</strong>: lower_bound, upper_bound, bisect</li>
-  </ul>
+<h2>Overview</h2>
+<p>This chapter covers how to sort data and search efficiently using binary search.</p>
 
-  <h2>Sample Problem</h2>
-  <p>Given a list of numbers, output them in ascending order.</p>
+<h2>Core Techniques</h2>
+<ol>
+    
+        <li><strong>Sorting</strong>: Sort arrays before applying logic like max/min, duplicates, ranges.</li>
+        <li><strong>Binary Search</strong>: Search efficiently in sorted arrays using two-pointer or mid logic.</li>
+</ol>
 
-  <p><strong>Python</strong></p>
-  <pre><code class="language-python">nums = list(map(int, input().split()))
-nums.sort()
-print(*nums)</code></pre>
 
-  <p><strong>C++</strong></p>
-  <pre><code class="language-cpp">#include <iostream>
-#include <vector>
-#include <algorithm>
+        <h3>Technique 1: Sorting</h3>
+        <div class="note"><strong>Why:</strong> Sorting enables efficient range handling, duplicate detection, and binary search.</div>
+        <h4>Example: Sort Integers</h4>
+        <pre class="code-block"><code class="language-python"># Python
+arr = list(map(int, input().split()))
+arr.sort()
+print(*arr)</code></pre>
+        <pre class="code-block"><code class="language-cpp">// C++
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
 using namespace std;
+
 int main() {
     int n; cin >> n;
-    vector<int> a(n);
-    for (int &x : a) cin >> x;
-    sort(a.begin(), a.end());
-    for (int x : a) cout << x << ' ';
+    vector<int> arr(n);
+    for (int &x : arr) cin >> x;
+    sort(arr.begin(), arr.end());
+    for (int x : arr) cout << x << " ";
 }</code></pre>
 
-  <h2>Common Mistakes</h2>
-  <p>Forgetting to call sort before accessing elements in sorted order.</p>
+        <h3>Technique 2: Binary Search</h3>
+        <div class="note"><strong>Why:</strong> Once sorted, we can search in O(log n) time using binary search for performance.</div>
+        <h4>Example: Find a Target Value</h4>
+        <pre class="code-block"><code class="language-python"># Python
+arr = list(map(int, input().split()))
+target = int(input())
+arr.sort()
+left, right = 0, len(arr) - 1
+found = False
+while left <= right:
+    mid = (left + right) // 2
+    if arr[mid] == target:
+        found = True
+        break
+    elif arr[mid] < target:
+        left = mid + 1
+    else:
+        right = mid - 1
+print(found)</code></pre>
+        <pre class="code-block"><code class="language-cpp">// C++
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
 
-  <h2>Summary</h2>
-  <ul>
-    <li>Know when to use built-in sorts</li>
-<li>Binary search requires sorted array</li>
-  </ul>
+int main() {
+    int n, x; cin >> n >> x;
+    int a[n];
+    for (int i = 0; i < n; i++) cin >> a[i];
+    sort(a, a+n);
+    int l = 0, r = n-1, mid;
+    bool found = false;
+    while (l <= r) {
+        mid = (l + r) / 2;
+        if (a[mid] == x) { found = true; break; }
+        else if (a[mid] < x) l = mid + 1;
+        else r = mid - 1;
+    }
+    cout << (found ? "YES" : "NO") << endl;
+}</code></pre>
+        
 
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
+<h2>Common Mistakes</h2>
+
+        <ul>
+        <li><strong>Not sorting before binary search:</strong> Binary search only works on sorted data.</li>
+        <li><strong>Off-by-one errors:</strong> Midpoint and loop bounds (≤ or &lt;) often cause subtle bugs.</li>
+        <li><strong>Using == when lower_bound needed:</strong> You may want the first value ≥ x, not necessarily == x.</li>
+        </ul>
+
+<h2>Summary</h2>
+<ul>
+    
+        <li>Always sort before using binary search.</li>
+        <li>Use built-in sort if possible.</li>
+        <li>Binary search = powerful + fast, but logic must be precise.</li>
+</ul>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
 </body>
 </html>

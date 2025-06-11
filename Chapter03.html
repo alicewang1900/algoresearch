@@ -1,11 +1,12 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Chapter 03: Prefix Sums and Difference Arrays</title>
-    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
-    <style>
+<meta charset="utf-8"/>
+<title>Chapter 03: Prefix Sums and Difference Arrays</title>
+<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet"/>
+<style>
         body {
             background-color: #eef6ff;
             font-family: Arial, sans-serif;
@@ -46,66 +47,56 @@
   };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
 </head>
 <body>
-
+<div class="nav">
+<a href="index.html">🏠 Home</a> <span>| Chapter 03: Prefix Sums and Difference Arrays</span>
+</div>
 <div style="margin-bottom: 20px;">
-  <strong>Chapters:</strong>
-  <a href="chapter01.html">01</a> |
+<strong>Chapters:</strong>
+<a href="chapter01.html">01</a> |
   <a href="chapter02.html">02</a> |
   <a href="chapter03.html">03</a> |
   <a href="chapter05.html">05</a>
 </div>
 
-
-<div class="nav">
-    <a href="index.html">🏠 Home</a> <span>| Chapter 03: Prefix Sums and Difference Arrays</span>
-</div>
-
 <h1>Chapter 03: Prefix Sums and Difference Arrays</h1>
-
 <h2>Overview</h2>
 <p>This chapter introduces prefix sums and difference arrays to compute ranges efficiently.</p>
-
 <h2>Core Techniques</h2>
 <ol>
-    
-        <li><strong>Prefix Sum</strong>: Convert O(n) range sum queries into O(1) using cumulative sums.</li>
-        <li><strong>Difference Array</strong>: Perform O(1) range updates, especially when multiple changes needed.</li>
+<li><strong>Prefix Sum</strong>: Convert O(n) range sum queries into O(1) using cumulative sums.</li>
+<li><strong>Difference Array</strong>: Perform O(1) range updates, especially when multiple changes needed.</li>
 </ol>
-
-
-        <h3>Technique 1: Prefix Sum</h3>
-        <div class="note"><strong>Why:</strong> Prefix sums allow fast range queries over arrays.</div>
-        <h4>Example: Range Sum</h4>
-        <pre class="code-block"><code class="language-python"># Python
+<h3>Technique 1: Prefix Sum</h3>
+<div class="note"><strong>Why:</strong> Prefix sums allow fast range queries over arrays.</div>
+<h4>Example: Range Sum</h4>
+<pre class="code-block"><code class="language-python"># Python
 arr = list(map(int, input().split()))
 prefix = [0]
 for num in arr:
     prefix.append(prefix[-1] + num)
 l, r = map(int, input().split())
 print(prefix[r+1] - prefix[l])</code></pre>
-        <pre class="code-block"><code class="language-cpp">// C++
+<pre class="code-block"><code class="language-cpp">// C++
 #include &lt;iostream&gt;
 #include &lt;vector&gt;
 using namespace std;
 
 int main() {
-    int n; cin >> n;
+    int n; cin &gt;&gt; n;
     vector<int> a(n), p(n+1, 0);
-    for (int i = 0; i < n; ++i) {
-        cin >> a[i];
+    for (int i = 0; i &lt; n; ++i) {
+        cin &gt;&gt; a[i];
         p[i+1] = p[i] + a[i];
     }
-    int l, r; cin >> l >> r;
-    cout << p[r+1] - p[l] << endl;
-}</code></pre>
-
-        <h3>Technique 2: Difference Array</h3>
-        <div class="note"><strong>Why:</strong> Useful for applying multiple range updates efficiently.</div>
-        <h4>Example: Increment Range</h4>
-        <pre class="code-block"><code class="language-python"># Python
+    int l, r; cin &gt;&gt; l &gt;&gt; r;
+    cout &lt;&lt; p[r+1] - p[l] &lt;&lt; endl;
+}</int></code></pre>
+<h3>Technique 2: Difference Array</h3>
+<div class="note"><strong>Why:</strong> Useful for applying multiple range updates efficiently.</div>
+<h4>Example: Increment Range</h4>
+<pre class="code-block"><code class="language-python"># Python
 n = 10
 diff = [0] * (n+1)
 diff[2] += 3
@@ -115,7 +106,7 @@ arr[0] = diff[0]
 for i in range(1, n):
     arr[i] = arr[i-1] + diff[i]
 print(arr)</code></pre>
-        <pre class="code-block"><code class="language-cpp">// C++
+<pre class="code-block"><code class="language-cpp">// C++
 #include &lt;iostream&gt;
 using namespace std;
 
@@ -126,34 +117,27 @@ int main() {
     diff[6] -= 3;
     int arr[n];
     arr[0] = diff[0];
-    for (int i = 1; i < n; ++i)
+    for (int i = 1; i &lt; n; ++i)
         arr[i] = arr[i-1] + diff[i];
-    for (int i = 0; i < n; ++i)
-        cout << arr[i] << " ";
+    for (int i = 0; i &lt; n; ++i)
+        cout &lt;&lt; arr[i] &lt;&lt; " ";
 }</code></pre>
-        
-
 <h2>Common Mistakes</h2>
-
-        <ul>
-        <li><strong>Wrong prefix index:</strong> Confusion between 0-based and 1-based indexing causes wrong answers.</li>
-        <li><strong>Forgetting difference[i+1] -= x:</strong> A common mistake when range update logic is reversed.</li>
-        <li><strong>Wrong size prefix array:</strong> You need size n+1 to accommodate p[i+1].</li>
-        </ul>
-
+<ul>
+<li><strong>Wrong prefix index:</strong> Confusion between 0-based and 1-based indexing causes wrong answers.</li>
+<li><strong>Forgetting difference[i+1] -= x:</strong> A common mistake when range update logic is reversed.</li>
+<li><strong>Wrong size prefix array:</strong> You need size n+1 to accommodate p[i+1].</li>
+</ul>
 <h2>Summary</h2>
 <ul>
-    
-        <li>Prefix sums = quick range answers.</li>
-        <li>Difference arrays = quick batch updates.</li>
-        <li>Check indexing carefully.</li>
+<li>Prefix sums = quick range answers.</li>
+<li>Difference arrays = quick batch updates.</li>
+<li>Check indexing carefully.</li>
 </ul>
-
 <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
-
-<h2>Error Examples & Fixes</h2>
+<h2>Error Examples &amp; Fixes</h2>
 <h4>Error: Off-by-one in prefix sum calculation</h4>
 <pre class="code-block"><code class="language-python"># Wrong
 prefix = [0] * len(arr)
@@ -164,6 +148,5 @@ for i in range(1, len(arr)):
 <pre class="code-block"><code class="language-python">prefix = [0] * (len(arr)+1)
 for i in range(1, len(arr)+1):
     prefix[i] = prefix[i-1] + arr[i-1]</code></pre>
-
 </body>
 </html>

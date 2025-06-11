@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter 01: Input and Simulation</title>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #eef6ff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 960px;
+            margin: auto;
+        }
+        h1, h2, h3 {
+            color: #003366;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 1em;
+            border-left: 4px solid #003366;
+            overflow-x: auto;
+        }
+        .note {
+            background: #dbeaff;
+            padding: 1em;
+            border-left: 4px solid #003366;
+            margin-bottom: 20px;
+        }
+        .nav {
+            margin-bottom: 30px;
+        }
+        .nav a {
+            color: #003366;
+            font-weight: bold;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+    </style>
+
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\(', '\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+</head>
+<body>
+
+<div style="margin-bottom: 20px;">
+  <strong>Chapters:</strong>
+  <a href="chapter01.html">01</a> |
+  <a href="chapter02.html">02</a> |
+  <a href="chapter03.html">03</a> |
+  <a href="chapter05.html">05</a>
+</div>
+
+
+<div class="nav">
+    <a href="index.html">🏠 Home</a> <span>| Chapter 01: Input and Simulation</span>
+</div>
+
+<h1>Chapter 01: Input and Simulation</h1>
+
+<h2>Overview</h2>
+<p>This chapter introduces basic input/output methods and simulation techniques used to model a problem in programming contests.
+These techniques are often the first step toward solving computational problems that do not require deep algorithms but depend on careful implementation.</p>
+
+<h2>Core Techniques</h2>
+<ol>
+    <li><strong>Basic Input/Output</strong>: Reading/writing data accurately with <code>cin/cout</code> (C++) or <code>input()/print()</code> (Python).</li>
+    <li><strong>String Parsing</strong>: Breaking strings using split and converting values to/from integers or strings.</li>
+    <li><strong>Simulation</strong>: Implementing logic directly based on the problem description, often step-by-step.</li>
+</ol>
+
+<h2>Examples by Technique</h2>
+
+<h3>Technique 1: Basic Input/Output</h3>
+<div class="note">
+    <strong>Why:</strong> Input/output is the first step in every problem. This example counts vowels using basic input and output.
+</div>
+<h4>Example: Count the Number of Vowels</h4>
+<pre class="code-block"><code class="language-python"># Python
+s = input()
+count = sum(1 for c in s if c.lower() in "aeiou")
+print(count)</code></pre>
+<pre class="code-block"><code class="language-cpp">// C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    int count = 0;
+    for (char c : s)
+        if (tolower(c) == 'a' || tolower(c) == 'e' || tolower(c) == 'i' || tolower(c) == 'o' || tolower(c) == 'u')
+            count++;
+    cout << count << endl;
+    return 0;
+}</code></pre>
+
+<h3>Technique 2: String Parsing</h3>
+<div class="note">
+    <strong>Why:</strong> Parsing space-separated input is common. This example sums numbers parsed from a string.
+</div>
+<h4>Example: Sum of Integers from String</h4>
+<pre class="code-block"><code class="language-python"># Python
+numbers = list(map(int, input().split()))
+print(sum(numbers))</code></pre>
+<pre class="code-block"><code class="language-cpp">// C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int x, sum = 0;
+    while (cin >> x)
+        sum += x;
+    cout << sum << endl;
+    return 0;
+}</code></pre>
+
+<h3>Technique 3: Simulation</h3>
+<div class="note">
+    <strong>Why:</strong> Simulation helps model real-world logic like a robot moving step by step.
+</div>
+<h4>Example: Robot Movement</h4>
+<pre class="code-block"><code class="language-python"># Python
+moves = input()
+x, y = 0, 0
+for move in moves:
+    if move == 'U': y += 1
+    elif move == 'D': y -= 1
+    elif move == 'L': x -= 1
+    elif move == 'R': x += 1
+print(x, y)</code></pre>
+<pre class="code-block"><code class="language-cpp">// C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    string moves;
+    cin >> moves;
+    int x = 0, y = 0;
+    for (char move : moves) {
+        if (move == 'U') y++;
+        else if (move == 'D') y--;
+        else if (move == 'L') x--;
+        else if (move == 'R') x++;
+    }
+    cout << x << " " << y << endl;
+    return 0;
+}</code></pre>
+
+<h2>Summary</h2>
+<ul>
+    <li>Basic I/O and simulation are the entry point for most problems.</li>
+    <li>Edge cases, large input, and logic clarity are essential for success.</li>
+    <li>Start from reading the problem statement line by line and simulate the behavior described.</li>
+</ul>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
+
+<h2>Error Examples & Fixes</h2>
+<h4>Error: Incorrect input parsing from string</h4>
+<pre class="code-block"><code class="language-python"># Wrong
+data = input().split(',')</code></pre>
+<p><strong>Fix:</strong> Use split with correct delimiter and strip spacing.</p>
+<pre class="code-block"><code class="language-python">data = [int(x.strip()) for x in input().split(',')]</code></pre>
+
+</body>
+</html>

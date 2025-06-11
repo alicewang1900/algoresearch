@@ -145,5 +145,13 @@ int main() {
 <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
+
+<h2>Error Examples & Fixes</h2>
+<h4>Error: Incorrect input parsing from string</h4>
+<pre class="code-block"><code class="language-python"># Wrong
+data = input().split(',')</code></pre>
+<p><strong>Fix:</strong> Use split with correct delimiter and strip spacing.</p>
+<pre class="code-block"><code class="language-python">data = [int(x.strip()) for x in input().split(',')]</code></pre>
+
 </body>
 </html>

@@ -134,5 +134,18 @@ int main() {
 <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
+
+<h2>Error Examples & Fixes</h2>
+<h4>Error: Off-by-one in prefix sum calculation</h4>
+<pre class="code-block"><code class="language-python"># Wrong
+prefix = [0] * len(arr)
+prefix[0] = arr[0]
+for i in range(1, len(arr)):
+    prefix[i] = prefix[i-1] + arr[i]</code></pre>
+<p><strong>Fix:</strong> Use length+1 and 1-based indexing to simplify queries.</p>
+<pre class="code-block"><code class="language-python">prefix = [0] * (len(arr)+1)
+for i in range(1, len(arr)+1):
+    prefix[i] = prefix[i-1] + arr[i-1]</code></pre>
+
 </body>
 </html>

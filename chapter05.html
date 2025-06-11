@@ -1,36 +1,71 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapter 05 - Greedy Strategy</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; background-color: #f4f8fc; color: #333; }
-    h1, h2, h3 { color: #1a4e8a; }
-    code { background-color: #eef; padding: 2px 6px; border-radius: 4px; }
-    pre { background-color: #eef; padding: 12px; border-radius: 6px; overflow-x: auto; }
-    .section { margin-bottom: 40px; }
-    a { color: #1a4e8a; text-decoration: none; }
-    nav { margin-bottom: 20px; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Chapter 05: Greedy Strategy</title>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #eef6ff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 960px;
+            margin: auto;
+        }
+        h1, h2, h3 {
+            color: #003366;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 1em;
+            border-left: 4px solid #003366;
+            overflow-x: auto;
+        }
+        .note {
+            background: #dbeaff;
+            padding: 1em;
+            border-left: 4px solid #003366;
+            margin-bottom: 20px;
+        }
+        .nav {
+            margin-bottom: 30px;
+        }
+        .nav a {
+            color: #003366;
+            font-weight: bold;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-  <nav><a href="/">Home</a> / Chapter 05 - Greedy Strategy</nav>
 
-  <h1>Chapter 05: Greedy Strategy</h1>
+<div class="nav">
+    <a href="index.html">🏠 Home</a> <span>| Chapter 05: Greedy Strategy</span>
+</div>
 
-  <div class="section">
-    <h2>Overview</h2>
-    <p>Greedy algorithms make the best local choice at each step with the hope of finding a global optimum. These strategies are efficient when the problem satisfies the <strong>greedy-choice property</strong> and <strong>optimal substructure</strong>.</p>
-  </div>
+<h1>Chapter 05: Greedy Strategy</h1>
 
-  <div class="section">
-    <h2>Technique 1: Interval Greedy</h2>
-    <p><strong>Key Idea:</strong> Sort intervals by end time and iteratively choose non-overlapping ones.</p>
-    <h3>Example Problem: Activity Selection</h3>
-    <p>Given a list of activities with start and end times, find the maximum number of non-overlapping activities.</p>
-    <h4>Python Solution:</h4>
-    <pre><code>activities = [(1, 3), (2, 5), (4, 7)]
+<h2>Overview</h2>
+<p>This chapter explains how greedy strategies work by making locally optimal choices at each step, and when they lead to globally optimal solutions.</p>
+
+<h2>Core Techniques</h2>
+<ol>
+    <li><strong>Interval Greedy</strong>: Sort intervals and pick based on finish time.</li>
+    <li><strong>Heap-based Greedy</strong>: Use a min-heap to track the earliest release time of resources.</li>
+</ol>
+
+<h2>Technique 1: Interval Greedy</h2>
+<div class="note">
+    <strong>Why:</strong> Useful for selecting the maximum number of non-overlapping intervals, e.g. activity selection.
+</div>
+
+<h3>Example: Activity Selection</h3>
+<p>Find the maximum number of non-overlapping activities from a list of (start, end) intervals.</p>
+
+<h4># Python</h4>
+<pre class="code-block"><code class="language-python">activities = [(1, 3), (2, 5), (4, 7)]
 activities.sort(key=lambda x: x[1])
 end = -1
 count = 0
@@ -39,34 +74,38 @@ for start, finish in activities:
         count += 1
         end = finish
 print(count)</code></pre>
-    <h4>C++ Solution:</h4>
-    <pre><code>#include &lt;iostream&gt;
+
+<h4>// C++</h4>
+<pre class="code-block"><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;algorithm&gt;
 using namespace std;
-int main() {
-  vector&lt;pair&lt;int,int&gt;&gt; activities = {{1,3},{2,5},{4,7}};
-  sort(activities.begin(), activities.end(), [](auto &a, auto &b) {
-    return a.second < b.second;
-  });
-  int end = -1, count = 0;
-  for (auto &act : activities) {
-    if (act.first >= end) {
-      count++;
-      end = act.second;
-    }
-  }
-  cout << count << endl;
-}</code></pre>
-  </div>
 
-  <div class="section">
-    <h2>Technique 2: Heap-based Greedy</h2>
-    <p><strong>Key Idea:</strong> Use a min-heap to track resource usage dynamically.</p>
-    <h3>Example Problem: Meeting Room II</h3>
-    <p>Given meeting time intervals, return the minimum number of meeting rooms required.</p>
-    <h4>Python Solution:</h4>
-    <pre><code>import heapq
+int main() {
+    vector&lt;pair&lt;int,int&gt;&gt; activities = {{1,3},{2,5},{4,7}};
+    sort(activities.begin(), activities.end(), [](auto &a, auto &b) {
+        return a.second < b.second;
+    });
+    int end = -1, count = 0;
+    for (auto &act : activities) {
+        if (act.first >= end) {
+            count++;
+            end = act.second;
+        }
+    }
+    cout << count << endl;
+}</code></pre>
+
+<h2>Technique 2: Heap-based Greedy</h2>
+<div class="note">
+    <strong>Why:</strong> Dynamically manage resource reuse, such as minimizing meeting rooms.
+</div>
+
+<h3>Example: Meeting Room II</h3>
+<p>Return the minimum number of rooms needed for scheduled meetings.</p>
+
+<h4># Python</h4>
+<pre class="code-block"><code class="language-python">import heapq
 meetings = [(0, 30), (5, 10), (15, 20)]
 meetings.sort()
 heap = []
@@ -75,51 +114,44 @@ for start, end in meetings:
         heapq.heappop(heap)
     heapq.heappush(heap, end)
 print(len(heap))</code></pre>
-    <h4>C++ Solution:</h4>
-    <pre><code>#include &lt;iostream&gt;
+
+<h4>// C++</h4>
+<pre class="code-block"><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 #include &lt;queue&gt;
 #include &lt;algorithm&gt;
 using namespace std;
+
 int main() {
-  vector&lt;pair&lt;int,int&gt;&gt; meetings = {{0,30},{5,10},{15,20}};
-  sort(meetings.begin(), meetings.end());
-  priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;
-  for (auto &m : meetings) {
-    if (!pq.empty() && pq.top() <= m.first)
-      pq.pop();
-    pq.push(m.second);
-  }
-  cout << pq.size() << endl;
+    vector&lt;pair&lt;int,int&gt;&gt; meetings = {{0,30},{5,10},{15,20}};
+    sort(meetings.begin(), meetings.end());
+    priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;
+    for (auto &m : meetings) {
+        if (!pq.empty() && pq.top() <= m.first)
+            pq.pop();
+        pq.push(m.second);
+    }
+    cout << pq.size() << endl;
 }</code></pre>
-  </div>
 
-  <div class="section">
-    <h2>Common Mistakes</h2>
-    <ul>
-      <li>Sorting intervals incorrectly (e.g., by start time instead of end time).</li>
-      <li>Assuming greedy works without verifying the greedy-choice property.</li>
-      <li>Forgetting to update state variables like end time or heap.</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Error Examples & Fixes</h2>
-    <h4>Error: Sorting by start time instead of end time in interval scheduling</h4>
-    <pre><code># Wrong: sort by start time
+<h2>Error Examples & Fixes</h2>
+<h4>Error: Sorting by start time instead of end time in interval scheduling</h4>
+<pre class="code-block"><code class="language-python"># Wrong
 tasks.sort(key=lambda x: x[0])</code></pre>
-    <p><strong>Fix:</strong> Sort by end time to ensure maximal non-overlapping selection.</p>
-    <pre><code># Correct
+<p><strong>Fix:</strong> Sort by end time to ensure maximal non-overlapping selection.</p>
+<pre class="code-block"><code class="language-python"># Correct
 tasks.sort(key=lambda x: x[1])</code></pre>
 
-    <h4>Error: Not removing the earliest end-time from heap in meeting room problem</h4>
-    <pre><code># Wrong: always adding to heap
+<h4>Error: Not removing the earliest end-time from heap in meeting room problem</h4>
+<pre class="code-block"><code class="language-python"># Wrong
 heapq.heappush(heap, end)</code></pre>
-    <p><strong>Fix:</strong> Check if earliest room can be reused</p>
-    <pre><code>if heap and heap[0] <= start:
+<p><strong>Fix:</strong> Check if earliest room can be reused</p>
+<pre class="code-block"><code class="language-python">if heap and heap[0] <= start:
     heapq.heappop(heap)
 heapq.heappush(heap, end)</code></pre>
-  </div>
 
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
 </body>
 </html>

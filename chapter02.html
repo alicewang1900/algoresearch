@@ -139,5 +139,15 @@ int main() {
 <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
+
+<h2>Error Examples & Fixes</h2>
+<h4>Error: Sorting integers as strings</h4>
+<pre class="code-block"><code class="language-python"># Wrong
+nums = ["10", "2", "1"]
+nums.sort()</code></pre>
+<p><strong>Fix:</strong> Convert to integers before sorting.</p>
+<pre class="code-block"><code class="language-python">nums = list(map(int, nums))
+nums.sort()</code></pre>
+
 </body>
 </html>
